@@ -2,23 +2,27 @@ public class TopManager extends Operator {
     private int salary;
     private int companyIncome;
 
+    private final int WANTED_INCOME = 10000000;
+    private final int BASE_SALARY = 100000;
 
     public TopManager(String name, Company company) {
         super(name);
-        this.placeOfWork = company;
+        placeOfWork = company;
+        company.hire(this);
         companyIncome = placeOfWork.getIncome();
-        if (companyIncome >= 10000000) {
-            salary = (int) (2.5 * 100000);
+        if (companyIncome >= WANTED_INCOME) {
+            salary = (int) (2.5 * BASE_SALARY);
         } else {
-            salary = 100000;
+            salary = BASE_SALARY;
         }
     }
+
     public int getMonthlySalary() {
-        return this.salary;
+        return salary;
     }
 
     @Override
     public String toString() {
-        return "Имя: " + name + " Зарплата: " + this.salary + "\n";
+        return "Имя: " + name + " Зарплата: " + salary + " руб." + "\n";
     }
 }

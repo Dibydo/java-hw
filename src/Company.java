@@ -37,27 +37,35 @@ public class Company {
 
     public List<Operator> getTopSalaryStaff(int count) {
 
+        List<Operator> temp;
+        temp = employeeList;
         Collections.sort(employeeList);
         int arListSize = employeeList.size();
         List<Operator> topPaid = new ArrayList<>();
 
-        for (int i = employeeList.size() - 1; i > employeeList.size() - 1 - count ; i--) {
+        System.out.println("Список из " + count + " самых высоких зарплат");
+        for (int i = employeeList.size() - 1; i > employeeList.size() - 1 - count; i--) {
             topPaid.add(employeeList.get(i));
         }
 
+        employeeList = temp;
         return topPaid;
     }
 
     public List<Operator> getLowestSalaryStaff(int count) {
 
+        List<Operator> temp;
+        temp = employeeList;
         Collections.sort(employeeList);
         int arListSize = employeeList.size();
         List<Operator> leastPaid = new ArrayList<>();
 
+        System.out.println("Список из " + count + " самых низких зарплат");
         for (int i = 0; i < count; i++) {
             leastPaid.add(employeeList.get(i));
         }
 
+        employeeList = temp;
         return leastPaid;
     }
 

@@ -4,9 +4,11 @@ public class Operator implements Comparable<Operator> {
     protected String name;
     public Company placeOfWork;
 
+    private final int BASE_SALARY = 80000;
+
     public Operator(String name) {
         this.name = name;
-        this.salary = 80000;
+        salary = BASE_SALARY;
     }
 
     public String getName() {
@@ -31,10 +33,11 @@ public class Operator implements Comparable<Operator> {
 
     @Override
     public String toString() {
-        return "Имя: " + name + " Зарплата: " + this.salary + "\n";
+        return "Имя: " + name + " Зарплата: " + salary + " руб." + "\n";
     }
 
-    @Override public int compareTo(Operator o) {
+    @Override
+    public int compareTo(Operator o) {
         if (this.getMonthlySalary() > o.getMonthlySalary()) {
             return 1;
         } else if (this.getMonthlySalary() < o.getMonthlySalary()) {

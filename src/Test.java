@@ -35,16 +35,17 @@ public class Test {
         whoToHire.add(manager3);
         whoToHire.add(manager4);
         whoToHire.add(manager5);
-        whoToHire.add(tManager1);
-        whoToHire.add(tManager2);
-        whoToHire.add(tManager3);
 
         BMSTU.hireAll(whoToHire);
+
         System.out.println("Заработок компании: " + BMSTU.getIncome());
+
         System.out.println(BMSTU.getEmployeeList());
+
         List<Operator> low = BMSTU.getLowestSalaryStaff(5);
-        List<Operator> top = BMSTU.getTopSalaryStaff(7);
         System.out.println(low);
+
+        List<Operator> top = BMSTU.getTopSalaryStaff(7);
         System.out.println(top);
 
         BMSTU.fire(oper1);
