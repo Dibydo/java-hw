@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Company {
 
@@ -8,10 +9,21 @@ public class Company {
     int moneyCounter = 0;
     private String companyName;
 
+    private int WANTED_INCOME = 10000000;
+
     public void hire(Operator operator) {
         employeeList.add(operator);
         operator.setPlaceOfWork(this);
         System.out.println("Successfully hired " + operator.getName());
+    }
+
+    public void hire(TopManager topManager) {
+        employeeList.add(topManager);
+        topManager.setPlaceOfWork(this);
+        if (this.getIncome() >= WANTED_INCOME) {
+            topManager.setSalary((int) (topManager.getMonthlySalary() * 2.5));
+        }
+        System.out.println("Successfully hired " + topManager.getName());
     }
 
     public void hireAll(List<Operator> hireList) {
@@ -23,9 +35,13 @@ public class Company {
     }
 
     public void fire(Operator operator) {
-        employeeList.remove(operator);
-        operator.setPlaceOfWork(null);
-        System.out.println("Successfully fired " + operator.getName());
+        if (employeeList.contains(operator)) {
+            employeeList.remove(operator);
+            operator.setPlaceOfWork(null);
+            System.out.println("Successfully fired " + operator.getName());
+        } else {
+            System.out.println("Operator " + operator.getName() + " isn't hired by " + companyName);
+        }
     }
 
     public int getIncome() {
@@ -37,35 +53,27 @@ public class Company {
 
     public List<Operator> getTopSalaryStaff(int count) {
 
-        List<Operator> temp;
-        temp = employeeList;
-        Collections.sort(employeeList);
-        int arListSize = employeeList.size();
+        SortedOperatorList sortedEmployeeList = new SortedOperatorList(employeeList);
         List<Operator> topPaid = new ArrayList<>();
 
-        System.out.println("Список из " + count + " самых высоких зарплат");
-        for (int i = employeeList.size() - 1; i > employeeList.size() - 1 - count; i--) {
-            topPaid.add(employeeList.get(i));
+        System.out.println("List of " + count + " highest salaries");
+        for (int i = sortedEmployeeList.size() - 1; i > sortedEmployeeList.size() - 1 - count; i--) {
+            topPaid.add(sortedEmployeeList.get(i));
         }
 
-        employeeList = temp;
         return topPaid;
     }
 
     public List<Operator> getLowestSalaryStaff(int count) {
 
-        List<Operator> temp;
-        temp = employeeList;
-        Collections.sort(employeeList);
-        int arListSize = employeeList.size();
+        SortedOperatorList sortedEmployeeList = new SortedOperatorList(employeeList);
         List<Operator> leastPaid = new ArrayList<>();
 
-        System.out.println("Список из " + count + " самых низких зарплат");
+        System.out.println("List of " + count + " lowest salaries");
         for (int i = 0; i < count; i++) {
-            leastPaid.add(employeeList.get(i));
+            leastPaid.add(sortedEmployeeList.get(i));
         }
 
-        employeeList = temp;
         return leastPaid;
     }
 

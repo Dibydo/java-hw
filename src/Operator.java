@@ -4,7 +4,7 @@ public class Operator implements Comparable<Operator> {
     protected String name;
     public Company placeOfWork;
 
-    private final int BASE_SALARY = 80000;
+    private int BASE_SALARY = 80000;
 
     public Operator(String name) {
         this.name = name;
@@ -33,7 +33,7 @@ public class Operator implements Comparable<Operator> {
 
     @Override
     public String toString() {
-        return "Имя: " + name + " Зарплата: " + salary + " руб." + "\n";
+        return "Name: " + name + " Salary: " + salary + " rub." + "\n";
     }
 
     @Override

@@ -4,9 +4,9 @@ public class Manager extends Operator {
 
     private int salary;
 
-    private final int BASE_SALARY = 80000;
-    private final int LOW_EARN = 115000;
-    private final int HIGH_EARN = 140000;
+    private int BASE_SALARY = 80000;
+    private int LOW_EARN = 115000;
+    private int HIGH_EARN = 140000;
 
     public Manager(String name) {
         super(name);
@@ -14,7 +14,7 @@ public class Manager extends Operator {
     }
 
     private void setSalary() {
-        salary  = (int) (BASE_SALARY + 0.05 * ThreadLocalRandom.current().nextInt(LOW_EARN, HIGH_EARN + 1));
+        salary = (int) (BASE_SALARY + 0.05 * ThreadLocalRandom.current().nextInt(LOW_EARN, HIGH_EARN + 1));
     }
 
     public int getMonthlySalary() {
@@ -23,6 +23,6 @@ public class Manager extends Operator {
 
     @Override
     public String toString() {
-        return "Имя: " + name + " Зарплата: " + salary + " руб." + "\n";
+        return "Name: " + name + " Salary: " + salary + " rub." + "\n";
     }
 }
